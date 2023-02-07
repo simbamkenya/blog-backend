@@ -1,5 +1,6 @@
 const {Post } = require('../models/Post');
 const { Category } = require('../models/Category')
+const { User } = require('../models/User')
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose')
@@ -26,18 +27,19 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
    const { title, author, content, image, category  } = req.body;
 
-   // const postTag = Tag.findById(tag)
-   // if(!postTag) return res.status(400).send('invalid tag')
+   const postAuthor = await User.findById(author);
+   if(!postAuthor) return res.status(400).send('invalid authors')
 
-   let post = await new Post({ title, author, content, image, category })
+
+   const postCategory = await Category.findById(category)
+   if(!postCategory) return res.status(400).send('invalid category')
+
+   let post = await new Post({ title, author: postAuthor, content, image, category: postCategory })
 
    product = await post.save()
    if(!post) return res.status(500).send('post was not created')
 
    res.status(200).send(post)
-   
-
-
 })
 
 //update a post
