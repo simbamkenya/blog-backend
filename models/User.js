@@ -23,3 +23,4 @@ const userSchema = new mongoose({
 })
 
 exports.User = mongoose.model('User', userSchema)
+

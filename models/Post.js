@@ -9,10 +9,10 @@ const postSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
-    tags: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tag'
-    }],
+    category:  {
+        type: String,
+        required: true
+    },
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
