@@ -25,7 +25,7 @@ app.use('*', cors())
 
 // app.use()
 
-// app.use(errorHandler)
+app.use(errorHandler)
 // app.use(authJwt())
 
 //routers
